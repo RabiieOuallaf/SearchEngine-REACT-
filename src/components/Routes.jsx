@@ -12,7 +12,6 @@ const Routing = () => {
 
       <Routes>
 
-        
 
         <Route exact path='/' element={<Navigate to='/search'/>}/>
 
