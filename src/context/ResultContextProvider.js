@@ -1,47 +1,40 @@
-import React , { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-const resultContext = createContext(); 
-const baseURL = 'https://google-search72.p.rapidapi.com/';
+const StateContext = createContext();
+const baseUrl = 'https://google-search3.p.rapidapi.com/api/v1';
 
+export const StateContextProvider = ({ children }) => {
+    
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
-const ResultContextProvider = ({ children }) => {
+  const getResults = async (url) => {
+    setLoading(true);
 
-    const [result, setResult] = useState([]);
-    const [isLoading , setIsLaoding] = useState(false);
-    const [searchTerm , setSearchTerm] = useState('');
+    const res = await fetch(`${baseUrl}${url}`, {
 
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '4024f83a50msh8d4f76535c6a95ap1d532djsnffa0ef36fa6b',
+        'X-RapidAPI-Host': 'google-search72.p.rapidapi.com'
+      }
 
+    })
 
-    const getData = async (type) => {
+    const data = await res.json();
 
-        setIsLaoding(true);
-
-
-
-        const response = await fetch(`${baseURL}${type}`, {
-            method: "GET",
-
-            headers: {
-                'X-RapidAPI-Key': '4024f83a50msh8d4f76535c6a95ap1d532djsnffa0ef36fa6b',
-                'X-RapidAPI-Host': 'google-search72.p.rapidapi.com'
-              }
-
-        })
-
-        const data = await response.json();
-
-        setResult(data);
-        setIsLaoding(false);
+    setResults(data);
+    setLoading(false);
 
 
-    }
+  };
 
-    return (
-        <resultContext.Provider value={{getData, result, searchTerm, setSearchTerm, isLoading} }>
-            {children}
-        </resultContext.Provider>
-    )
+  return (
+    <StateContext.Provider value={{ getResults, results, searchTerm, setSearchTerm, loading }}>
+      {children}
+    </StateContext.Provider>
+  );
+};
 
-}
-
-export const useResultContext = () => useContext(resultContext);
+export const useStateContext = () => useContext(StateContext);

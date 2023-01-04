@@ -13,13 +13,7 @@ const Routing = () => {
       <Routes>
 
 
-        <Route exact path='/' element={<Navigate to='/search'/>}/>
-
-        <Route exact path='/search' element={<Results />}/>
-
-        <Route exact path='/news' element={<Results />}/>
-
-        <Route exact path='/images' element={<Results />}/>
+        
        
       </Routes>
         
