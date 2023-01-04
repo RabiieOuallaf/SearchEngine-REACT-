@@ -24,6 +24,20 @@ export const StateContextProvider = ({ children }) => {
 
     const data = await res.json();
 
+    if(url.includes("/news")){
+
+      setResults(data.entries);
+
+    }else if(url.includes('/images')){
+
+      setResults(data.image_result);
+
+    }else {
+
+      setResults(data.results);
+
+    }
+
 
     setResults(data);
 

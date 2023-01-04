@@ -7,7 +7,7 @@ import Loading from './Loading';
 
 function Results() {
 
-  const {getResults ,results, searchTerm, setSearchTerm, loading } = useStateContext();
+  const {getResults ,results : {results, image_result, entries: news}, searchTerm, setSearchTerm, loading } = useStateContext();
   const location = useLocation();
 
   useEffect( () => {
@@ -34,7 +34,7 @@ function Results() {
       return (
         <div className='flex flex-wrap justify-center space-y-6 sm:px-56'>
 
-          {results ?.results ?.map( ({link,title}, index) =>  {
+          {results?.map( ({link,title}, index) =>  {
             <div key={index} className="md:w-2/5 w-full ">
 
               <a href={link} target="_blank" rel='noreferrer'>
@@ -62,7 +62,7 @@ function Results() {
 
     case '/images':
       return (<div className='flex flex-wrap justify-center items-center'>
-        {results?.image_result?.map( ({image , link: {href, title}}, index) =>  {
+        {image_result?.map( ({image , link: {href, title}}, index) =>  {
           <a className='sm:p-3 p-5' href={href} key={index} target="_blank" rel="noreferrer">
 
             <img src={image?.src} alt={title} loading="lazy"/>
@@ -76,10 +76,46 @@ function Results() {
       break;
 
     case '/news':
-      return "NEWS";
+      return (
+        <div className='flex flex-wrap justify-center space-y-6 sm:px-56 items-center'>
+
+          {results ?.entries ?.map( ({links,id, source, title}) =>  {
+            <div key={id} className="md:w-2/5 w-full ">
+
+              <a href={links?.[0].href} target="_blank" rel='noreferrer' className='hover:underline'>
+
+                
+
+                <p className='text-lg  dark:text-blue-300 text-blue-700 '>
+
+                  {title}
+
+                </p>
+
+                <div className="flex gap-4 ">
+                  <a href={source?.href} target="_blank" rel='noreferrer'>
+                    {source?.href}
+                  </a>
+                </div>
+
+              </a>
+
+            </div>
+
+          })}
+
+          </div>)
       break;
     case '/videos':
-    return "NEWS";
+    return (
+      <div className='flex flex-wrap'>
+        {results.map( (video, index) =>  {
+          <div key={index} className='p-2'>
+              <ReactPlayer url={video.additional_links[0].href } controls width="355px" height="200px"/>
+          </div>
+        })}
+      </div>
+    );
     break;
 
     default:
