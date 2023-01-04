@@ -7,7 +7,7 @@ export const StateContextProvider = ({ children }) => {
     
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('youcode school');
 
   const getResults = async (url) => {
     setLoading(true);
@@ -24,7 +24,10 @@ export const StateContextProvider = ({ children }) => {
 
     const data = await res.json();
 
+
     setResults(data);
+
+
     setLoading(false);
 
 
