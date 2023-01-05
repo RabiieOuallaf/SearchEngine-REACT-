@@ -10,11 +10,10 @@ const Routing = () => {
 
     <div className='p-4'>
 
-      <Routes>
+      <Routes>  
 
-
+        <Route exact path='/images' element={<Results />}/>
         
-       
       </Routes>
         
 

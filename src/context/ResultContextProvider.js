@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useState } from 'react';
 
 const StateContext = createContext();
-const baseUrl = 'https://google-search3.p.rapidapi.com/api/v1';
+const baseUrl = 'https://bing-web-search1.p.rapidapi.com';
 
 export const StateContextProvider = ({ children }) => {
     
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('youcode school');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const getResults = async (url) => {
     setLoading(true);
@@ -16,29 +16,20 @@ export const StateContextProvider = ({ children }) => {
 
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '4024f83a50msh8d4f76535c6a95ap1d532djsnffa0ef36fa6b',
-        'X-RapidAPI-Host': 'google-search72.p.rapidapi.com'
+
+        'X-BingApis-SDK': 'true',
+		    'X-RapidAPI-Key': '4024f83a50msh8d4f76535c6a95ap1d532djsnffa0ef36fa6b',
+		    'X-RapidAPI-Host': 'bing-web-search1.p.rapidapi.com'
+        
       }
 
     })
 
     const data = await res.json();
 
-    if(url.includes("/news")){
+    
 
-      setResults(data.entries);
-
-    }else if(url.includes('/images')){
-
-      setResults(data.image_result);
-
-    }else {
-
-      setResults(data.results);
-
-    }
-
-
+    console.log(data)
     setResults(data);
 
 

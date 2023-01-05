@@ -28,6 +28,7 @@ const Navbar = ({darkTheme , setDarkTheme}) => {
 
 
         </div>
+        <Search />
         
     </div>
   )
