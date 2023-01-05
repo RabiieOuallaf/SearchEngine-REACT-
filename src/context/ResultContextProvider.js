@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 
 const StateContext = createContext();
-const baseUrl = 'https://bing-web-search1.p.rapidapi.com';
+const baseUrl = 'https://google.serper.dev';
 
 export const StateContextProvider = ({ children }) => {
     
@@ -10,20 +10,31 @@ export const StateContextProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const getResults = async (url) => {
+
+
     setLoading(true);
 
-    const res = await fetch(`${baseUrl}${url}`, {
+    const  myHeaders = new Headers();
+    myHeaders.append("X-API-KEY", "b8bfad9d6f8e8828311248229f052c907e3f8698");
+    myHeaders.append("Content-Type", "application/json");
 
-      method: 'GET',
-      headers: {
+    const raw = JSON.stringify({
+      "q": "apple inc",
+      "gl": "us",
+      "hl": "en",
+      "autocorrect": true
+    });
 
-        'X-BingApis-SDK': 'true',
-		    'X-RapidAPI-Key': '4024f83a50msh8d4f76535c6a95ap1d532djsnffa0ef36fa6b',
-		    'X-RapidAPI-Host': 'bing-web-search1.p.rapidapi.com'
-        
-      }
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
 
-    })
+
+
+    const res = await fetch(`${baseUrl}${url}`, requestOptions)
 
     const data = await res.json();
 
