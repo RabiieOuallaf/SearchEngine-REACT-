@@ -1,12 +1,11 @@
 import React, {useEffect}from 'react';
 import { useLocation } from 'react-router-dom';
-import ReactPlayer from 'react-player';
 import { useStateContext } from '../context/ResultContextProvider';
 import Load from './Loading';
 
 function Results() {
 
-  const {getResults ,results, searchTerm, setSearchTerm, loading } = useStateContext();
+  const {getResults ,results, searchTerm, loading } = useStateContext();
   const location = useLocation();
 
   
