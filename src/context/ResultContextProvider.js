@@ -19,7 +19,7 @@ export const StateContextProvider = ({ children }) => {
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-      "q": "apple inc",
+      "q": "",
       "gl": "us",
       "hl": "en",
       "autocorrect": true

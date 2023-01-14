@@ -8,7 +8,7 @@ function Search() {
 
   const [text, setText] = useState('elon musk');
   const {setSearchTerm} = useStateContext();
-  const [debounceValue] = useDebounce(text, 1100); 
+  const [debounceValue] = useDebounce(text, 500); 
 
   useEffect(() => {
      if(debounceValue) setSearchTerm(debounceValue)

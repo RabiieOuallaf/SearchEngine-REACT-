@@ -8,7 +8,7 @@ const Routing = () => {
 
     
 
-    <div className='p-4'>
+    <div>
 
       <Routes>  
         <Route exact path='/' element={<Navigate to='/search' />}/>
