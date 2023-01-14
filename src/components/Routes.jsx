@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes} from "react-router-dom";
+import { Route,Navigate, Routes} from "react-router-dom";
 import Results from './Results';
 
 const Routing = () => {
@@ -11,7 +11,10 @@ const Routing = () => {
     <div className='p-4'>
 
       <Routes>  
-        <Route exact path='/' element={<Results />}/>
+        <Route exact path='/' element={<Navigate to='/search' />}/>
+
+        <Route exact path='/search' element={<Results />}/>
+        
         <Route exact path='/images' element={<Results />}/>
         
       </Routes>
