@@ -11,7 +11,7 @@ const Routing = () => {
     <div className='p-4'>
 
       <Routes>  
-
+        <Route exact path='/' element={<Results />}/>
         <Route exact path='/images' element={<Results />}/>
         
       </Routes>

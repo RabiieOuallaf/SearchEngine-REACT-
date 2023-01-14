@@ -13,6 +13,7 @@
     "react-player": "^2.11.0",
     "react-router-dom": "^6.6.1",
     "react-scripts": "^4.0.3",
+    "semantic-ui-react": "^2.1.4",
     "use-debounce": "^9.0.2",
     "web-vitals": "^2.1.4"
   },
